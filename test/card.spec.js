@@ -1,8 +1,13 @@
 var expect = chai.expect;
 
 describe('Cards', function(){
+
+    var cardie;
+    beforeEach(function(){
+      cardie = new CardApi.Cards();
+    });
+
   describe('basic test', function(){
-    var cardie = new Cards();
     it('should have cards', function(){
       expect(cardie).to.be.instanceof(Object);
     });
@@ -18,10 +23,6 @@ describe('Cards', function(){
 
 
   describe('getCard should return a card', function(){
-    var cardie;
-    beforeEach(function(){
-      cardie = new Cards();
-    });
     
     it('should return a card when getCard called', function(){
       var singleCard = cardie.getCard();
@@ -41,7 +42,7 @@ describe('Cards', function(){
       var cardGot = [];
       
       for (var i = 0; i < 52; i++){
-      var singleCard = cardie.getCard();      
+      var singleCard = cardie.getCard();
       for (var j=0; j < cardGot.length; j++){
         expect(singleCard).not.equals(cardGot[j]);
       }
