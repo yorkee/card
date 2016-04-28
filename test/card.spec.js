@@ -20,7 +20,7 @@ describe('Cards', function(){
   describe('getCard should return a card', function(){
     var cardie;
     beforeEach(function(){
-      cardie = new Cards();  
+      cardie = new Cards();
     });
     
     it('should return a card when getCard called', function(){
@@ -41,14 +41,13 @@ describe('Cards', function(){
       var cardGot = [];
       
       for (var i = 0; i < 52; i++){
-
-        var singleCard = cardie.getCard();
-        cardGot.push(singleCard);
-
-        for (var j=0; j < cardGot.length; j++){
-          expect(singleCard).not.equals(cardGot[j]);
-        }
+      var singleCard = cardie.getCard();      
+      for (var j=0; j < cardGot.length; j++){
+        expect(singleCard).not.equals(cardGot[j]);
       }
+      cardGot.push(singleCard);
+    }
+
     });
 
   });
