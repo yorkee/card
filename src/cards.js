@@ -1,13 +1,14 @@
 var CardApi = {};
 
-CardApi.Cards = function() {
+CardApi.Cards = function(numberOfDeck) {
 
+  var numOfDeck = numberOfDeck || 1;
   var cardExist = [];
   var rank = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
   var suit = ["H", "D", "C", "S"];
 
   //create a sorted deck with # of cards first
-  (function initCardInSequence() {
+  function initCardOneDeck() {
     for (var i = 0; i < 13; i++) {
       for (var j = 0; j < 4; j++) {
         cardExist.push({
@@ -16,16 +17,43 @@ CardApi.Cards = function() {
         });
       }
     }
-    CardApi.utils.suffle(cardExist);
-  })();
+  }
 
+  // pick a card
   function getCard() {
     return cardExist.pop() || "noMore";
   }
 
+  // put card back on top of the deck.
   function putCard(card) {
-
+    if (!isCardExistInDack(card)){
+      cardExist.push(card);
+      return true;
+    }
+    return false;
   }
+
+  function isCardExistInDack(card){
+    var numOfOccurance = numOfDeck;
+    for (var i = 0; i < cardExist.length; i++){
+      if (CardApi.utils.isSameCard(card, cardExist[i])){
+        numOfOccurance--;
+        if (numOfOccurance === 0){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  (function init(){
+    for (var i = 0; i < numOfDeck; i++){
+      initCardOneDeck();
+    }
+    CardApi.utils.suffle(cardExist);
+  })();
+
+
   return {
     getCard: getCard,
     putCard: putCard
