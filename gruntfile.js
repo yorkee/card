@@ -14,8 +14,9 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js'
       },
       unit: {
-        singleRun: true,
+        singleRun: false,
         background: false,
+        autoWatch: true,
         logLevel: 'ON'
       }
     },
@@ -23,11 +24,12 @@ module.exports = function(grunt) {
       'dest/index.js': ['src/index.js']
     }
   });
-
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-browserify');
   
   grunt.registerTask('default', ['jshint', 'karma:unit']);
+
   
 };

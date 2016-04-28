@@ -16,7 +16,7 @@ module.exports = function (karma) {
     ],
     
     files: [
-      'src/card/*.js',
+      'src/*.js',
       'test/*.spec.js'
     ]
 
