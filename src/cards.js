@@ -1,13 +1,12 @@
 var CardApi = {};
 
 CardApi.Cards = function(numberOfDeck) {
-
   var numOfDeck = numberOfDeck || 1;
   var cardExist = [];
   var rank = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
   var suit = ["H", "D", "C", "S"];
 
-  //create a sorted deck with # of cards first
+  //create a sorted deck 
   function initCardOneDeck() {
     for (var i = 0; i < 13; i++) {
       for (var j = 0; j < 4; j++) {
@@ -19,12 +18,10 @@ CardApi.Cards = function(numberOfDeck) {
     }
   }
 
-  // pick a card
   function getCard() {
     return cardExist.pop() || "noMore";
   }
 
-  // put card back on top of the deck.
   function putCard(card) {
     if (!isCardExistInDack(card)){
       cardExist.push(card);
@@ -53,19 +50,17 @@ CardApi.Cards = function(numberOfDeck) {
     CardApi.utils.suffle(cardExist);
   })();
 
-
   return {
     getCard: getCard,
     putCard: putCard
   };
 };
 
-
 CardApi.utils = {
   isSameCard: function(card1, card2) {
     return (card1.suit === card2.suit) && (card1.rank === card2.rank);
   },
-
+  
   //This is adopt by  Fisher-Yates Shuffle from Internet
   suffle: function(array) {
     var counter = array.length;
@@ -83,10 +78,8 @@ CardApi.utils = {
       array[counter] = array[index];
       array[index] = temp;
     }
-
     return array;
   }
-
 };
 
 

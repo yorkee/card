@@ -1,31 +1,24 @@
-var expect = chai.expect;
-
 describe('Cards', function() {
+  var heart2, diamond3, heart3, spadeJ;
 
-    var heart2, diamond3, heart3, spadeJ;
-
-    beforeEach(function() {
-      heart2 = {
-        suit: "H",
-        rank: "2"
-      };
-
-      diamond3 = {
-        suit: "D",
-        rank: "3"
-      };
-
-      heart3 = {
-        suit: "H",
-        rank: "3"
-      };
-
-      spadeJ = {
-        suit: "S",
-        rank: "J"
-      };
-
-    });
+  beforeEach(function() {
+    heart2 = {
+      suit: "H",
+      rank: "2"
+    };
+    diamond3 = {
+      suit: "D",
+      rank: "3"
+    };
+    heart3 = {
+      suit: "H",
+      rank: "3"
+    };
+    spadeJ = {
+      suit: "S",
+      rank: "J"
+    };
+  });
 
   describe('basic test', function() {
     var cardie;
@@ -45,7 +38,6 @@ describe('Cards', function() {
       expect(cardie.getCard).to.be.instanceof(Function);
     });
   });
-
 
   describe('getCard', function() {
 
@@ -117,7 +109,6 @@ describe('Cards', function() {
     });
   });
 
-
   describe('putCard', function() {
 
     var cardie;
@@ -134,17 +125,17 @@ describe('Cards', function() {
       var singleCard, isCardExistInDeck;
 
       //pick a random car in the middle of the deck
-      for (var i = 0; i < 20; i++){
+      for (var i = 0; i < 20; i++) {
         singleCard = cardie.getCard();
       }
 
       cardie.putCard(singleCard);
 
-      isCardExistInDeck = (function(){
+      isCardExistInDeck = (function() {
         var card;
-        while (card !== "noMore"){
+        while (card !== "noMore") {
           card = cardie.getCard();
-          if (CardApi.utils.isSameCard(singleCard, card)){
+          if (CardApi.utils.isSameCard(singleCard, card)) {
             return true;
           }
         }
@@ -153,20 +144,19 @@ describe('Cards', function() {
       expect(isCardExistInDeck).equals(true);
     });
 
-
     it('card should NOT exist if not putting it back.', function() {
       var singleCard, isCardExistInDeck;
 
       //pick a random car in the middle of the deck
-      for (var i = 0; i < 20; i++){
+      for (var i = 0; i < 20; i++) {
         singleCard = cardie.getCard();
       }
 
-      isCardExistInDeck = (function(){
+      isCardExistInDeck = (function() {
         var card;
-        while (card !== "noMore"){
+        while (card !== "noMore") {
           card = cardie.getCard();
-          if (CardApi.utils.isSameCard(singleCard, card)){
+          if (CardApi.utils.isSameCard(singleCard, card)) {
             return true;
           }
         }
@@ -176,79 +166,72 @@ describe('Cards', function() {
     });
 
     it('should not able to put card back if its already in the deck', function() {
-      expect(cardie.putCard({suit:"H", rank:"A"})).equals(false);
+      expect(cardie.putCard({
+        suit: "H",
+        rank: "A"
+      })).equals(false);
     });
   });
 
+  describe('MultiDeck Support.. lets play with n deck of cards', function() {
+    var numOfDeck = 7;
 
-  describe('MultiDeck Support', function() {
-
-    describe('lets play with 2 deck', function(){
-
-      beforeEach(function() {
-        doubleDeck = new CardApi.Cards(2);
-      });
-
-      it("should have 104 cards", function(){
-        var card, cardCount = 0;
-
-        while (card !== "noMore"){
-          card = doubleDeck.getCard();
-          if (card !== "noMore"){
-            cardCount++;
-          }
-        }
-        expect(cardCount).equals(104);
-      });
-
-      it("should be able to put two same cards", function(){
-        var card;
-
-        while (card !== "noMore"){
-          card = doubleDeck.getCard();
-        }
-
-        expect(doubleDeck.putCard(spadeJ)).equals(true);
-        expect(doubleDeck.putCard(spadeJ)).equals(true);
-        expect(doubleDeck.putCard(spadeJ)).equals(false);
-
-      });
-
-      it("should be able to put two draw cards", function(){
-        var card;
-        var spadeJcount = 0,
-          heart2Count = 0,
-          diamond3Count = 0,
-          heart3Count = 0;
-
-        while (card !== "noMore"){
-          card = doubleDeck.getCard();
-
-          if (CardApi.utils.isSameCard(card, spadeJ)){
-            console.log("hahhaaaaa", card);
-            spadeJcount++;
-          }
-          if (CardApi.utils.isSameCard(card, heart2)){
-            heart2Count++;
-          }
-          if (CardApi.utils.isSameCard(card, diamond3)){
-            diamond3Count++;
-          }
-          if (CardApi.utils.isSameCard(card, heart3)){
-            heart3Count++;
-          }
-        }
-
-        expect(spadeJcount).equals(2);
-        expect(heart2Count).equals(2);
-        expect(diamond3Count).equals(2);
-        expect(heart3Count).equals(2);
-
-      });
-
-
+    beforeEach(function() {
+      doubleDeck = new CardApi.Cards(numOfDeck);
     });
 
-  });
+    it("should have 52 X numberOfDeck of cards", function() {
+      var card, cardCount = 0;
 
+      while (card !== "noMore") {
+        card = doubleDeck.getCard();
+        if (card !== "noMore") {
+          cardCount++;
+        }
+      }
+      expect(cardCount).equals(52 * numOfDeck);
+    });
+
+    it("should be able to put n same cards", function() {
+      var card;
+
+      while (card !== "noMore") {
+        card = doubleDeck.getCard();
+      }
+
+      for (var i = 0; i < numOfDeck; i++) {
+        expect(doubleDeck.putCard(spadeJ)).equals(true);
+      }
+      expect(doubleDeck.putCard(spadeJ)).equals(false);
+    });
+
+    it("should be able to draw n amount of same cards", function() {
+      var card;
+      var spadeJcount = 0,
+        heart2Count = 0,
+        diamond3Count = 0,
+        heart3Count = 0;
+
+      while (card !== "noMore") {
+        card = doubleDeck.getCard();
+        if (CardApi.utils.isSameCard(card, spadeJ)) {
+          spadeJcount++;
+        }
+        if (CardApi.utils.isSameCard(card, heart2)) {
+          heart2Count++;
+        }
+        if (CardApi.utils.isSameCard(card, diamond3)) {
+          diamond3Count++;
+        }
+        if (CardApi.utils.isSameCard(card, heart3)) {
+          heart3Count++;
+        }
+      }
+      expect(spadeJcount).equals(numOfDeck);
+      expect(heart2Count).equals(numOfDeck);
+      expect(diamond3Count).equals(numOfDeck);
+      expect(heart3Count).equals(numOfDeck);
+
+    });
+  });
 });
