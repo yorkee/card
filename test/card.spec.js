@@ -25,6 +25,15 @@ describe('Cards', function(){
       expect(singleCard.rank).to.be.a('string');
     });
 
+    it('should only have a deck of 52 cards to get ', function(){
+      var singleCard;
+      for (var i = 0; i <= 52; i++){
+        singleCard = cardie.getCard();
+      }
+      expect(singleCard).equals('noMore');
+    });
+
+
 
   });
 

@@ -1,13 +1,18 @@
 Cards = function() {
 
-
+  var cardCounter=52;
 
 
   function getCard() {
-    return{
-      suit: "S",
-      rank: "2"
-    };
+    if (cardCounter > 0){
+      cardCounter--;
+      return{
+        suit: "S",
+        rank: "2"
+      };
+    } else {
+      return "noMore";
+    }
   }
 
   function putCard(card) {
