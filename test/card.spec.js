@@ -54,9 +54,7 @@ describe('Cards', function() {
         }
         cardGot.push(singleCard);
       }
-
     });
-
   });
 
   describe("cardsEqual", function() {
@@ -99,6 +97,23 @@ describe('Cards', function() {
 
     it('should return true if giving 2 cards are totally equal', function() {
       expect(CardApi.utils.isSameCard(spadeJ, heart2)).equals(false);
+    });
+  });
+
+  describe('suffling', function() {
+
+    it('should have at least half a deck unequal when suffle', function() {
+      var firstDeck = new CardApi.Cards();
+      var secondDeck = new CardApi.Cards();
+
+      numOfTimesCardEqual = 0;
+
+      for (var i = 0; i < 52; i++) {
+        if (CardApi.utils.isSameCard(firstDeck.getCard(), secondDeck.getCard())) {
+          numOfTimesCardEqual++;
+        }
+      }
+      expect(numOfTimesCardEqual).to.be.below(31);
     });
 
 
