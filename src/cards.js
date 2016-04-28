@@ -30,3 +30,10 @@ CardApi.Cards = function() {
     putCard: putCard
   };
 };
+
+
+CardApi.utils = {
+  isSameCard: function(card1, card2) {
+    return (card1.suit === card2.suit) && (card1.rank === card2.rank);
+  }
+};
