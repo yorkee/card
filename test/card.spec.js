@@ -18,7 +18,11 @@ describe('Cards', function(){
 
 
   describe('getCard should return a card', function(){
-    var cardie = new Cards();
+    var cardie;
+    beforeEach(function(){
+      cardie = new Cards();  
+    });
+    
     it('should return a card when getCard called', function(){
       var singleCard = cardie.getCard();
       expect(singleCard.suit).to.be.a('string');
@@ -33,7 +37,19 @@ describe('Cards', function(){
       expect(singleCard).equals('noMore');
     });
 
+    it('should not get the same card again ', function(){
+      var cardGot = [];
+      
+      for (var i = 0; i < 52; i++){
 
+        var singleCard = cardie.getCard();
+        cardGot.push(singleCard);
+
+        for (var j=0; j < cardGot.length; j++){
+          expect(singleCard).not.equals(cardGot[j]);
+        }
+      }
+    });
 
   });
 
