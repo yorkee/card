@@ -1,8 +1,13 @@
 Cards = function() {
 
 
+
+
   function getCard() {
-    return;
+    return{
+      suit: "S",
+      rank: "2"
+    };
   }
 
   function putCard(card) {
@@ -13,5 +18,5 @@ Cards = function() {
   return {
     getCard: getCard,
     putCard: putCard
-  }
-}
+  };
+};
