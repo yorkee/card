@@ -171,6 +171,25 @@ describe('Cards', function() {
         rank: "A"
       })).equals(false);
     });
+
+    it('should put card on top of deck by default', function() {
+      var singleCard = cardie.getCard();
+
+      cardie.putCard(singleCard);
+      expect(CardApi.utils.isSameCard(singleCard,cardie.getCard()))
+        .equals(true);
+
+    });
+
+    //TODO:  There is a 1/52 chance this test case will fail.  random might just happen to put the same card on top.
+    it('should put card back on randomly if specified', function() {
+      var singleCard = cardie.getCard();
+
+      cardie.putCard(singleCard, true);
+      expect(CardApi.utils.isSameCard(singleCard,cardie.getCard()))
+        .equals(false);
+    });
+
   });
 
   describe('MultiDeck Support.. lets play with n deck of cards', function() {

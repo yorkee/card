@@ -22,12 +22,18 @@ CardApi.Cards = function(numberOfDeck) {
     return cardExist.pop() || "noMore";
   }
 
-  function putCard(card) {
-    if (!isCardExistInDack(card)){
+  function putCard(card, isRandom) {
+    var isCardExist = isCardExistInDack(card);
+
+    if (!isCardExist){
       cardExist.push(card);
-      return true;
     }
-    return false;
+
+    if (isRandom){
+      CardApi.utils.suffle(cardExist);
+    }
+
+    return !isCardExist;
   }
 
   function isCardExistInDack(card){
