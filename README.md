@@ -100,5 +100,13 @@ will have 4 deck of cards suffled.
 
   If there is more than one playing deck, it will return false only if the same card occur more than # of same the card could possibily exist in x amount of decks.
 
+  To suffle the deck after putting the card back, you can do:
+```
+    deck.putCard({
+      suit: "H",
+      rank: "6"
+    }, true);
+```
+  this will suffle the deck after putting the card back, so you won't draw the same card again.
 
 
