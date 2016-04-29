@@ -1,3 +1,6 @@
+var CardApi = require('../src/cards');
+
+
 describe('Cards', function() {
   var heart2, diamond3, heart3, spadeJ;
 

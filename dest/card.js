@@ -89,7 +89,7 @@ CardApi.utils = {
   }
 };
 
-
 module.exports = CardApi;
+
 },{}]},{},[1])(1)
 });

@@ -88,4 +88,4 @@ CardApi.utils = {
   }
 };
 
-
+module.exports = CardApi;

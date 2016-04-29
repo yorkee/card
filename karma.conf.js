@@ -1,25 +1,38 @@
+var  brfs = require('brfs');
+
 module.exports = function (karma) {
 
   'use strict';
 
   karma.set({
 
-    singleRun: false,
-    autoWatch: false,
-    logLevel: karma.LOG_ERROR,
-
-    browsers: ['PhantomJS'],
-
     frameworks: [
       'mocha',
-      'chai'
+      'chai',
+      'browserify'
     ],
     
     files: [
-      'src/*.js',
-      'test/*.spec.js'
-    ]
+      {pattern: 'src/*.js', included: false, served: false},
+      {pattern: 'test/*.spec.js', included: true}
+    ],
 
+
+    browserify:{
+      debug: true,
+      transform: [brfs],
+    },
+    preprocessors: {
+      'test/**/*.js': ['browserify']
+    },
+
+    reporters: ['spec'],
+    port: 9876,
+    colors: true,
+    logLevel: karma.LOG_ERROR,
+    autoWatch: true,
+    browsers: ['PhantomJS'],
+    singleRun: true
   });
 
 };
