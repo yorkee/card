@@ -21,7 +21,14 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-      'dest/index.js': ['src/index.js']
+      options: {
+          browserifyOptions: {
+              standalone: 'cardApi',
+          },
+      },
+      'dest/card.js': ['src/*.js']
+      // src: 'src/*.js',
+      // dest: 'dest/card.js'
     }
   });
   grunt.loadNpmTasks('grunt-contrib-watch');
