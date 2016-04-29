@@ -3,6 +3,42 @@
 Simulate playing cards.
 
 
+## To run:
+
+basically, copy and paste dest/card.js into the browser.  then declare card by:
+```
+  var deck = new Cards();
+```
+then you can draw a card by:
+```
+    deck.getCard()
+```
+or put the card back on the deck by:
+```
+    deck.putCard({
+      suit: "H",
+      rank: "6"
+    });
+```
+
+## To build:
+
+you need to have node/npm.  then do 
+```
+   npm install
+```
+to run test case, you an run:
+```
+  grunt
+```
+to build dest/card.js, you an run:
+```
+  grunt browserify
+```
+
+
+
+
 ## Constructor: 
 
 ### Cards()
@@ -63,4 +99,6 @@ will have 4 deck of cards suffled.
   will put Heart 6 back in the deck.  If the procedure success, it will return true.  If card already exist, it will return false.
 
   If there is more than one playing deck, it will return false only if the same card occur more than # of same the card could possibily exist in x amount of decks.
+
+
 
