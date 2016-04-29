@@ -26,7 +26,7 @@ module.exports = function(grunt) {
               standalone: 'cardApi',
           },
       },
-      'dest/card.js': ['src/*.js']
+      'dest/card.js': ['src/cards.js']
       // src: 'src/*.js',
       // dest: 'dest/card.js'
     }

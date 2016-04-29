@@ -1,4 +1,5 @@
-var CardApi = require('../src/cards');
+var Cards = require('../src/cards'),
+  util = require('../src/util');
 
 
 describe('Cards', function() {
@@ -26,7 +27,7 @@ describe('Cards', function() {
   describe('basic test', function() {
     var cardie;
     beforeEach(function() {
-      cardie = new CardApi.Cards();
+      cardie = new Cards();
     });
 
     it('should have cards', function() {
@@ -46,7 +47,7 @@ describe('Cards', function() {
 
     var cardie;
     beforeEach(function() {
-      cardie = new CardApi.Cards();
+      cardie = new Cards();
     });
 
     it('should return a card when getCard called', function() {
@@ -79,32 +80,32 @@ describe('Cards', function() {
   describe("cardsEqual", function() {
 
     it('should return true if giving 2 cards are equal', function() {
-      expect(CardApi.utils.isSameCard(heart2, heart2)).equals(true);
+      expect(util.isSameCard(heart2, heart2)).equals(true);
     });
 
     it('should return true if giving 2 cards not equal suit', function() {
-      expect(CardApi.utils.isSameCard(heart3, diamond3)).equals(false);
+      expect(util.isSameCard(heart3, diamond3)).equals(false);
     });
 
     it('should return true if giving 2 cards not equal rank', function() {
-      expect(CardApi.utils.isSameCard(heart2, heart3)).equals(false);
+      expect(util.isSameCard(heart2, heart3)).equals(false);
     });
 
     it('should return true if giving 2 cards are totally equal', function() {
-      expect(CardApi.utils.isSameCard(spadeJ, heart2)).equals(false);
+      expect(util.isSameCard(spadeJ, heart2)).equals(false);
     });
   });
 
   describe('suffling', function() {
 
     it('should have at least half a deck unequal when suffle', function() {
-      var firstDeck = new CardApi.Cards();
-      var secondDeck = new CardApi.Cards();
+      var firstDeck = new Cards();
+      var secondDeck = new Cards();
 
       numOfTimesCardEqual = 0;
 
       for (var i = 0; i < 52; i++) {
-        if (CardApi.utils.isSameCard(firstDeck.getCard(), secondDeck.getCard())) {
+        if (util.isSameCard(firstDeck.getCard(), secondDeck.getCard())) {
           numOfTimesCardEqual++;
         }
       }
@@ -116,7 +117,7 @@ describe('Cards', function() {
 
     var cardie;
     beforeEach(function() {
-      cardie = new CardApi.Cards();
+      cardie = new Cards();
     });
 
     it('should put a card back to the dack', function() {
@@ -138,7 +139,7 @@ describe('Cards', function() {
         var card;
         while (card !== "noMore") {
           card = cardie.getCard();
-          if (CardApi.utils.isSameCard(singleCard, card)) {
+          if (util.isSameCard(singleCard, card)) {
             return true;
           }
         }
@@ -159,7 +160,7 @@ describe('Cards', function() {
         var card;
         while (card !== "noMore") {
           card = cardie.getCard();
-          if (CardApi.utils.isSameCard(singleCard, card)) {
+          if (util.isSameCard(singleCard, card)) {
             return true;
           }
         }
@@ -179,7 +180,7 @@ describe('Cards', function() {
       var singleCard = cardie.getCard();
 
       cardie.putCard(singleCard);
-      expect(CardApi.utils.isSameCard(singleCard,cardie.getCard()))
+      expect(util.isSameCard(singleCard,cardie.getCard()))
         .equals(true);
 
     });
@@ -189,7 +190,7 @@ describe('Cards', function() {
       var singleCard = cardie.getCard();
 
       cardie.putCard(singleCard, true);
-      expect(CardApi.utils.isSameCard(singleCard,cardie.getCard()))
+      expect(util.isSameCard(singleCard,cardie.getCard()))
         .equals(false);
     });
 
@@ -199,7 +200,7 @@ describe('Cards', function() {
     var numOfDeck = 7;
 
     beforeEach(function() {
-      doubleDeck = new CardApi.Cards(numOfDeck);
+      doubleDeck = new Cards(numOfDeck);
     });
 
     it("should have 52 X numberOfDeck of cards", function() {
@@ -236,16 +237,16 @@ describe('Cards', function() {
 
       while (card !== "noMore") {
         card = doubleDeck.getCard();
-        if (CardApi.utils.isSameCard(card, spadeJ)) {
+        if (util.isSameCard(card, spadeJ)) {
           spadeJcount++;
         }
-        if (CardApi.utils.isSameCard(card, heart2)) {
+        if (util.isSameCard(card, heart2)) {
           heart2Count++;
         }
-        if (CardApi.utils.isSameCard(card, diamond3)) {
+        if (util.isSameCard(card, diamond3)) {
           diamond3Count++;
         }
-        if (CardApi.utils.isSameCard(card, heart3)) {
+        if (util.isSameCard(card, heart3)) {
           heart3Count++;
         }
       }
