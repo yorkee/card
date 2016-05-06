@@ -7,7 +7,7 @@ Simulate playing cards.
 
 basically, copy and paste dest/card.js into the browser.  then declare card by:
 ```
-  var deck = new Cards();
+  var deck = new cardApi();
 ```
 then you can draw a card by:
 ```
@@ -41,23 +41,23 @@ to build dest/card.js, you an run:
 
 ## Constructor: 
 
-### Cards()
+### cardApi()
 
 declaring cards will give you full stack of cards suffled:
 
 ```
-  var deck = new Cards();
+  var deck = new cardApi();
 ```
 
 will have 52 playing card suffled and ready.
 
 
-### Cards(numerOfDeck)
+### cardApi(numerOfDeck)
 
 passing a number parameter will give you n decks of cards suffled.
 
 ```
-  var deck = new Cards(4);
+  var deck = new cardApi(4);
 ```
 
 will have 4 deck of cards suffled.
